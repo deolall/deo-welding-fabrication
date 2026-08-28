@@ -574,8 +574,18 @@ background-size:70px 70px;pointer-events:none}
 
     const reviews=JSON.parse(localStorage.getItem("deoReviews") || "[]");
     reviews.push({name:name,rating:rating,text:text,date:new Date().toLocaleDateString()});
-    localStorage.setItem("deoReviews",JSON.stringify(reviews));
-
+    localStorage.setItem("deoReviews"
+,JSON.stringify(reviews));
+fetch("https://script.google.com/macros/s/AKfycby0DcseW8EKYWhj8GbIRnUmwDlGGwbPi8L47XDXETn8Ys6bmkoy-QjvidZd-4CQKGKM/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: {"Content-Type": "application/x-www-form-urlencoded"},
+  body: new URLSearchParams({
+    name: name,
+    rating: rating,
+    review: text
+  })
+});
     nameInput.value="";
     textInput.value="";
     rating=0;
