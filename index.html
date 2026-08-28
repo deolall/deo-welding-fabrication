@@ -442,9 +442,8 @@ background-size:70px 70px;pointer-events:none}
     });
   });
 
-  function render(){
-    const reviews = JSON.parse(localStorage.getItem("deoReviews") || "[]");
-    empty.style.display = reviews.length ? "none" : "block";
+  async function render(){
+    const reviews = await fetch("https://script.google.com/macros/s/AKfycby0DcseW8EKYWhj8GbIRnUmwDlGGwbPi8L47XDXETn8Ys6bmkoy-QjvidZd-4CQKGKM/exec").then(r => r.json());    empty.style.display = reviews.length ? "none" : "block";
     list.querySelectorAll(".review-item").forEach(x=>x.remove());
 
     reviews.slice().reverse().forEach((r, reverseIndex)=>{
